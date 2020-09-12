@@ -1,0 +1,14 @@
+# What I Wish I Knew Before I Started R
+
+We're going to start at the beginning and I'm going to start by telling you why...
+
+# Who am I and what am I doing here?
+
+In 2014 I went to Cardiff University to study Psychology and I began to focus on statistics in the social sciences. So in my 2nd year, I started a brief research assistancy with a resident statistician Richard Morey who was working on a paper with a title similar to **this**. Very briefly, publication bias is a common phenomenon in publishable science whereby you only report your positive findings (i.e. something worked or had an effect) and you don't publish you're negative findings. The problem of course that then it looks like you're effect is bigger than it is. So a few people have come up with some clever statistical ways of detecting and correcting for that bias, and we were looking to see if they actually worked. Anyway, he was and still is a proficient R programmer and so he suggested that I use this as a learning experience to get to grips with R. And I've actually got a little representation of how that went...
+
+Basically, I jumped straight in at the deep end and kept going. I didn't know what R really was other than that it was a statistical programming language. I didn't know what it could do, what made R different to other languages and why it was so popular in academic and data analysis circuits. So anyway, as has happened many times before, I didn't let ignorance stop me and I powered through regardless. And I did learn a significant amount; and those few months were a major turning point in my life and how I ended up where I am today. And I loved every second of it, I really did. But as I started to develop my R skills, I noticed that I was missing some fundamental knowledge that would have helped me pick up new concepts and habits much more quickly.
+
+# Summary
+
+And so today, I'm just going to go over the basics that I should have learnt before I tried to change the world with R: a bit of a history lesson, what even *is* R, how does it compare to other languages, and what is it like to use?
+
