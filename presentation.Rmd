@@ -6,7 +6,7 @@ institute: "arawles.co.uk"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    lib_dir: [libs, www/resources]
+    lib_dir: [libs]
     nature:
       highlightStyle: github
       highlightLines: true
