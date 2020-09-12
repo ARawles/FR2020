@@ -196,6 +196,76 @@ cat(v1, v2)
 ```
 ---
 
+# Example
+
+- [CodeCamp](https://www.freecodecamp.org/)
+
+- Dataset containing tutorials and some stats
+
+.center[
+```{r, echo = FALSE, out.width="50%"}
+knitr::include_graphics("resources/data_preview.png")
+```
+]
+
+- We're going to use the Tidyverse packages to load and analyse the data
+
+
+---
+
+# Loading the data
+
+
+--
+
+```{r}
+cc_data <- readr::read_csv("code_camp_data.csv")
+head(cc_data, 10)
+```
+
+---
+
+# Cleaning the data
+
+--
+
+```{r}
+cc_data$Date <- as.Date(cc_data$Date, format = "%d/%m/%Y")
+```
+
+
+---
+
+# Summarising the data 
+
+--
+
+```{r}
+library(dplyr)
+
+summarised_cc_data <- cc_data %>%
+   dplyr::group_by(Date) %>%
+   dplyr::summarise(average_read_ratio = mean(`Read ratio`)) %>%
+   dplyr::ungroup()
+
+head(summarised_cc_data, 10)
+```
+
+---
+
+# Plotting the data
+
+--
+
+```{r}
+library(ggplot2)
+ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio)) +
+   geom_smooth(method = "loess", formula = y ~ x) +
+   scale_x_date(name = "Date", date_labels = "%b %y") +
+   scale_y_continuous(name = "Average Read Ratio") +
+   theme_classic()
+```
+---
 .center[
 ```{r, echo = FALSE, out.width="80%"}
 knitr::include_graphics("resources/plug.svg")
