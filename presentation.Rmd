@@ -1,0 +1,57 @@
+---
+title: "What I Wish I Knew Before I Started Learning R"
+subtitle: ""
+author: "Adam Rawles"
+institute: "arawles.co.uk"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: docs/libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    css: [default, shinobi]
+---
+
+# Who am I and what am I doing here?
+
+
+---
+
+# What is R?
+
+
+---
+
+# A brief history
+
+
+---
+
+# R vs. other languages
+
+
+---
+
+
+# Using R
+
+
+---
+
+# Plug
+
+
+---
+
+
+
+---
+
+class: center, middle
+
+# Thanks! Any questions?
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
