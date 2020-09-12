@@ -12,6 +12,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
     css: [default, shinobi]
+    self-contained: true
 ---
 
 # Who am I and what am I doing here?
