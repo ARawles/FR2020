@@ -196,11 +196,52 @@ cat(v1, v2)
 ```
 ---
 
-![plug](resources/plug.svg)
+.center[
+```{r, echo = FALSE, out.width="80%"}
+knitr::include_graphics("resources/plug.svg")
+```
+]
+---
 
+# teacheR
+
+- My first R book
+
+--
+
+- Hosted for free at [teacher.arawles.co.uk](https://teacher.arawles.co.uk), including a PDF and Ebook version.
+
+--
+
+- Paperback copies to come soon (but very limited)
+
+--
+
+- Aimed at those who are new to data analysis or who are looking to start teaching others
+
+--
+
+   - Two sections: For Teachers, For Students
+
+--
+
+- Hopefully to be followed by another book ([opeRate](https://operate.arawles.co.uk))
 
 ---
 
+# Introduction to R
+
+--
+
+- Month long introduction course
+
+--
+
+- Every Thursday in November here the Digital Greenhouse
+
+--
+
+- Absolutely free, but limited spaces!
 
 
 ---
