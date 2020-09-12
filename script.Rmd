@@ -1,3 +1,8 @@
+---
+pagetitle: script
+---
+
+
 # What I Wish I Knew Before I Started R
 
 We're going to start at the beginning and I'm going to start by telling you why...
