@@ -230,7 +230,17 @@ head(cc_data, 10)
 --
 
 ```{r}
-cc_data$Date <- as.Date(cc_data$Date, format = "%d/%m/%Y")
+library(dplyr)
+library(stringr)
+cc_data <- cc_data %>%
+   dplyr::mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
+                 topic = case_when(
+                    stringr::str_detect(Title, pattern = "Javascript|CSS|jQuery|React|Node.js|HTML") ~ "Web software",
+                    stringr::str_detect(Title, pattern = "Mac|Windows|Linux") ~"Operating systems",
+                    TRUE ~ "Other"
+                 ))
+head(cc_data, 10)
+
 ```
 
 
@@ -241,10 +251,10 @@ cc_data$Date <- as.Date(cc_data$Date, format = "%d/%m/%Y")
 --
 
 ```{r}
-library(dplyr)
+
 
 summarised_cc_data <- cc_data %>%
-   dplyr::group_by(Date) %>%
+   dplyr::group_by(Date, topic) %>%
    dplyr::summarise(average_read_ratio = mean(`Read ratio`)) %>%
    dplyr::ungroup()
 
@@ -259,10 +269,11 @@ head(summarised_cc_data, 10)
 
 ```{r}
 library(ggplot2)
-ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio)) +
-   geom_smooth(method = "loess", formula = y ~ x) +
+ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic)) +
+   geom_line() +
    scale_x_date(name = "Date", date_labels = "%b %y") +
    scale_y_continuous(name = "Average Read Ratio") +
+   scale_color_discrete(name = "Topic") +
    theme_classic()
 ```
 ---

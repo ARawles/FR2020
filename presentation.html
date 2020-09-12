@@ -272,7 +272,32 @@ head(cc_data, 10)
 
 
 ```r
-cc_data$Date &lt;- as.Date(cc_data$Date, format = "%d/%m/%Y")
+library(dplyr)
+library(stringr)
+cc_data &lt;- cc_data %&gt;%
+   dplyr::mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
+                 topic = case_when(
+                    stringr::str_detect(Title, pattern = "Javascript|CSS|jQuery|React|Node.js|HTML") ~ "Web software",
+                    stringr::str_detect(Title, pattern = "Mac|Windows|Linux") ~"Operating systems",
+                    TRUE ~ "Other"
+                 ))
+head(cc_data, 10)
+```
+
+```
+## # A tibble: 10 x 5
+##    Date       Title                                                                                                                         Recommends `Read ratio` topic           
+##    &lt;date&gt;     &lt;chr&gt;                                                                                                                              &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;           
+##  1 2016-10-01 "Upgrading to MacOS Sierra will break your SSH keys and lock you out of your own servers. In Free Code CampView storyReferre~         58         0.48 Operating syste~
+##  2 2016-10-01 "How Crowd Curation Improved Our Search Quality by 27% In Free Code CampView storyReferrers"                                          28         0.37 Other           
+##  3 2016-10-01 "Code Briefing: What I learned from reviewing 50 portfolios on Reddit in 3 crazy days In Free Code CampView storyReferrers"           56         0.59 Other           
+##  4 2016-10-01 "What I learned from reviewing 50 portfolios on Reddit in 3 crazy days. In Free Code CampView storyReferrers"                        635         0.49 Other           
+##  5 2016-10-01 "JavaScript Fatigue Fatigue In Free Code CampView storyReferrers"                                                                   1100         0.55 Other           
+##  6 2016-10-01 "My First Open Source Adventure In Free Code CampView storyReferrers"                                                                278         0.36 Other           
+##  7 2016-10-01 "How to stand on the shoulders of giants In Free Code CampView storyReferrers"                                                       806         0.38 Other           
+##  8 2016-10-01 "Code Briefing: using Darth Vader to explain React In Free Code CampView storyReferrers"                                              97         0.62 Web software    
+##  9 2016-10-01 "React Props/State Explained Through Darth Vader\x92s Hunt for the Rebels In Free Code CampView storyReferrers"                      264         0.27 Web software    
+## 10 2016-10-01 "The State Of JavaScript 2016: Results In Free Code CampView storyReferrers"                                                         207         0.52 Other
 ```
 
 
@@ -284,10 +309,8 @@ cc_data$Date &lt;- as.Date(cc_data$Date, format = "%d/%m/%Y")
 
 
 ```r
-library(dplyr)
-
 summarised_cc_data &lt;- cc_data %&gt;%
-   dplyr::group_by(Date) %&gt;%
+   dplyr::group_by(Date, topic) %&gt;%
    dplyr::summarise(average_read_ratio = mean(`Read ratio`)) %&gt;%
    dplyr::ungroup()
 
@@ -295,19 +318,19 @@ head(summarised_cc_data, 10)
 ```
 
 ```
-## # A tibble: 10 x 2
-##    Date       average_read_ratio
-##    &lt;date&gt;                  &lt;dbl&gt;
-##  1 2015-10-01              0.625
-##  2 2015-11-01              0.488
-##  3 2015-12-01              0.532
-##  4 2016-01-01              0.489
-##  5 2016-02-01              0.454
-##  6 2016-03-01              0.460
-##  7 2016-04-01              0.450
-##  8 2016-05-01              0.417
-##  9 2016-06-01              0.421
-## 10 2016-07-01              0.412
+## # A tibble: 10 x 3
+##    Date       topic             average_read_ratio
+##    &lt;date&gt;     &lt;chr&gt;                          &lt;dbl&gt;
+##  1 2015-10-01 Operating systems              0.79 
+##  2 2015-10-01 Other                          0.613
+##  3 2015-11-01 Other                          0.505
+##  4 2015-11-01 Web software                   0.27 
+##  5 2015-12-01 Other                          0.532
+##  6 2016-01-01 Other                          0.493
+##  7 2016-01-01 Web software                   0.41 
+##  8 2016-02-01 Operating systems              0.66 
+##  9 2016-02-01 Other                          0.454
+## 10 2016-02-01 Web software                   0.313
 ```
 
 ---
@@ -319,10 +342,11 @@ head(summarised_cc_data, 10)
 
 ```r
 library(ggplot2)
-ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio)) +
-   geom_smooth(method = "loess", formula = y ~ x) +
+ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic)) +
+   geom_line() +
    scale_x_date(name = "Date", date_labels = "%b %y") +
    scale_y_continuous(name = "Average Read Ratio") +
+   scale_color_discrete(name = "Topic") +
    theme_classic()
 ```
 
