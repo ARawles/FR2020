@@ -11,7 +11,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    css: [default, shinobi]
+    css: [custom.css, default, shinobi, ninjutsu]
     self-contained: true
 ---
 
@@ -24,8 +24,8 @@ output:
 --
 
 - 2nd year research assistancy
-    - An investigation into the efficacy of publication bias correction methods
-    
+- An investigation into the efficacy of publication bias correction methods
+
 --
 
 Me:
@@ -63,40 +63,44 @@ Me:
 
 --
 
-   - Developed by IBM in the 1950s
-   
+- Developed by IBM in the 1950s
+
 --
 
-   - Suited to numeric computation and scientific computing
-   - Became the basis for many other programming languages like BASIC
-   
+- Suited to numeric computation and scientific computing
+- Became the basis for many other programming languages like BASIC
+
 --
 
 - S (1976)
 
 --
 
-   - John Chambers
-   
+- John Chambers
+
 --
 
-   - "...designed to offer an alternative and more interactive approach [to Fortran]"
-   
+- "...designed to offer an alternative and more interactive approach [to Fortran]"
+
 --
 
-   - Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
-   
+- Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
+
 --
 
 - R (1995)
 
 --
 
-   - Ross Ihaka & Robert Gentleman
-   
+- Ross Ihaka & Robert Gentleman
+
 --
 
-   - "R can be considered as a different implementation of S"
+- "R can be considered as a different implementation of S"
+
+--
+
+- R is written in C, Fortran and R
 
 ---
 
@@ -121,24 +125,24 @@ Me:
 
 --
 
-   - Object-oriented systems
-   
+- Object-oriented systems
+
 --
 
 - Interpreted language
 
 --
 
-  - R needs to be installed to R code
-  - But there's growing support for web apps...
-  
+- R needs to be installed to R code
+- But there's growing support for web apps...
+
 --
 
 - Supported with over 15,000 open-source packages (written primarily in R, but also Java, C, C++, and Fortran)
 
 --
 
-   - Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
+- Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
 
 
 ---
@@ -166,20 +170,25 @@ Me:
 
 --
 
-   - Reporting
-   - Data analysis
-   - Statistics and machine learning
-   - Data driven web apps
-   - Presentations
+- Reporting
+- Data analysis
+- Statistics and machine learning
+- Data driven web apps
+- Presentations
+
+--
 
 - How do you code in R?
 
 --
 
-   - RStudio
-   - Visual Studio Code
-   
-- What does R code look like?
+- R GUI
+- RStudio
+- Visual Studio Code
+
+---
+
+#  What does R code look like?
 
 --
 
@@ -194,21 +203,26 @@ v2 <- "world"
 cat(v1, v2)
 
 ```
+
+- But let's look at a proper example...
+
 ---
 
 # Example
 
-- [CodeCamp](https://www.freecodecamp.org/)
+- [CodeCamp](https://www.freecodecamp.org/) dataset containing tutorials and some stats
 
-- Dataset containing tutorials and some stats
+--
 
 .center[
-```{r, echo = FALSE, out.width="50%"}
+```{r, echo = FALSE, out.width="80%"}
 knitr::include_graphics("resources/data_preview.png")
 ```
 ]
 
-- We're going to use the Tidyverse packages to load and analyse the data
+--
+
+- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data
 
 
 ---
@@ -220,7 +234,7 @@ knitr::include_graphics("resources/data_preview.png")
 
 ```{r}
 cc_data <- readr::read_csv("code_camp_data.csv")
-head(cc_data, 10)
+print(cc_data,n = 3, with = 75)
 ```
 
 ---
@@ -233,13 +247,16 @@ head(cc_data, 10)
 library(dplyr)
 library(stringr)
 cc_data <- cc_data %>%
-   dplyr::mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
-                 topic = case_when(
-                    stringr::str_detect(Title, pattern = "Javascript|CSS|jQuery|React|Node.js|HTML") ~ "Web software",
-                    stringr::str_detect(Title, pattern = "Mac|Windows|Linux") ~"Operating systems",
-                    TRUE ~ "Other"
-                 ))
-head(cc_data, 10)
+   mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
+          topic = case_when(
+             str_detect(Title,
+                        pattern = "Javascript|CSS|jQuery|React|Node.js|HTML"
+             ) ~ "Web software",
+             str_detect(Title,
+                        pattern = "Mac|Windows|Linux") ~"Operating systems",
+             TRUE ~ "Other"
+          ))
+print(cc_data, n = 2, width = 75)
 
 ```
 
@@ -252,13 +269,12 @@ head(cc_data, 10)
 
 ```{r}
 
-
 summarised_cc_data <- cc_data %>%
    dplyr::group_by(Date, topic) %>%
    dplyr::summarise(average_read_ratio = mean(`Read ratio`)) %>%
    dplyr::ungroup()
 
-head(summarised_cc_data, 10)
+print(summarised_cc_data, n = 10)
 ```
 
 ---
@@ -267,10 +283,10 @@ head(summarised_cc_data, 10)
 
 --
 
-```{r}
+```{r, out.width=4, out.height=3}
 library(ggplot2)
 ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic)) +
-   geom_line() +
+   geom_line(size = 1.25) +
    scale_x_date(name = "Date", date_labels = "%b %y") +
    scale_y_continuous(name = "Average Read Ratio") +
    scale_color_discrete(name = "Topic") +
@@ -302,7 +318,7 @@ knitr::include_graphics("resources/plug.svg")
 
 --
 
-   - Two sections: For Teachers, For Students
+- Two sections: For Teachers, For Students
 
 --
 
