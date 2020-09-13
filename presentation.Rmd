@@ -24,7 +24,7 @@ output:
 --
 
 - 2nd year research assistancy
-- An investigation into the efficacy of publication bias correction methods
+   - An investigation into the efficacy of publication bias correction methods
 
 --
 
@@ -63,16 +63,16 @@ Me:
 
 --
 
-- Developed by IBM in the 1950s
+   - Developed by IBM in the 1950s
 
 --
 
-- Suited to numeric computation and scientific computing
-- Became the basis for many other programming languages like BASIC
+   - Suited to numeric computation and scientific computing
+   - Became the basis for many other programming languages like BASIC
 
 --
 
-- S (1976)
+   - S (1976)
 
 --
 
@@ -80,11 +80,11 @@ Me:
 
 --
 
-- "...designed to offer an alternative and more interactive approach [to Fortran]"
+   - "...designed to offer an alternative and more interactive approach [to Fortran]"
 
 --
 
-- Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
+   - Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
 
 --
 
@@ -92,15 +92,15 @@ Me:
 
 --
 
-- Ross Ihaka & Robert Gentleman
+   - Ross Ihaka & Robert Gentleman
 
 --
 
-- "R can be considered as a different implementation of S"
+   - "R can be considered as a different implementation of S"
 
 --
 
-- Relies internally on C, Fortran and R
+   - Relies internally on C, Fortran and R
 
 ---
 
@@ -133,8 +133,8 @@ Me:
 
 --
 
-- R needs to be installed to R code
-- But there's growing support for web apps...
+   - R needs to be installed to R code
+   - But there's growing support for web apps...
 
 --
 
@@ -142,7 +142,7 @@ Me:
 
 --
 
-- Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
+   - Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
 
 
 ---
