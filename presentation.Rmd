@@ -113,11 +113,11 @@ Me:
 
 --
 
-- Open-source
+- 9th most popular programming language ([TIOBE index](https://en.wikipedia.org/wiki/TIOBE_index]))
 
 --
 
-- 9th most popular programming language ([TIOBE index](https://en.wikipedia.org/wiki/TIOBE_index]))
+- Open-source
 
 --
 
@@ -153,6 +153,32 @@ Me:
 
 --
 
+Object oriented:
+
+```{r, eval = FALSE}
+new_person = person("Adam", "Rawles")
+new_person.print()
+```
+
+```{r, echo = FALSE}
+print(c("Adam", "Rawles"))
+```
+
+--
+
+Functional:
+
+```{r, eval = FALSE}
+new_person <- person("Adam", "Rawles")
+print(new_person)
+```
+
+```{r, echo = FALSE}
+print(c("Adam", "Rawles"))
+```
+
+--
+
 - Designed for data analysis, not really software development
 
 --
@@ -170,11 +196,11 @@ Me:
 
 --
 
-- Reporting
-- Data analysis
-- Statistics and machine learning
-- Data driven web apps
-- Presentations
+   - Reporting
+   - Data analysis
+   - Statistics and machine learning
+   - Data driven web apps
+   - Presentations
 
 --
 
@@ -182,9 +208,9 @@ Me:
 
 --
 
-- R GUI
-- RStudio
-- Visual Studio Code
+   - R GUI
+   - RStudio
+   - Visual Studio Code
 
 ---
 
@@ -203,6 +229,8 @@ v2 <- "world"
 cat(v1, v2)
 
 ```
+
+--
 
 - But let's look at a proper example...
 
@@ -244,7 +272,7 @@ print(cc_data,n = 3, with = 75)
 --
 
 ```{r}
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 library(stringr)
 cc_data <- cc_data %>%
    mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
@@ -302,7 +330,11 @@ knitr::include_graphics("resources/plug.svg")
 
 # teacheR
 
-- My first R book
+- Aimed at those who are new to data analysis or who are looking to start teaching others
+
+--
+
+- Two sections: For Teachers, For Students
 
 --
 
@@ -314,14 +346,6 @@ knitr::include_graphics("resources/plug.svg")
 
 --
 
-- Aimed at those who are new to data analysis or who are looking to start teaching others
-
---
-
-- Two sections: For Teachers, For Students
-
---
-
 - Hopefully to be followed by another book ([opeRate](https://operate.arawles.co.uk))
 
 ---
@@ -330,11 +354,11 @@ knitr::include_graphics("resources/plug.svg")
 
 --
 
-- Month long introduction course
+- Month-long introduction course
 
 --
 
-- Every Thursday in November here the Digital Greenhouse
+- Every Thursday in November here the Digital Greenhouse (6-7pm)
 
 --
 

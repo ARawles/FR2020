@@ -376,7 +376,83 @@ summary {
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>And so today, I’m just going to go over the basics that I should have learnt before I tried to change the world with R: a bit of a history lesson, what even <em>is</em> R, how does it compare to other languages, and what is it like to use?</p>
+<p>And so today, I’m just going to go over the basics that I should have learnt before I tried to change the world with R: a bit of a history lesson, what even <em>is</em> R, how does it compare to other languages, and what is it like to use? And then we’ll have about 15 minutes for a Q and A at the end.</p>
+</div>
+<div id="a-brief-history" class="section level1">
+<h1>A Brief History</h1>
+<p>Our little story begins with the Fortran language. Developed by IBM in the 1950s and still supported today, Fortran was designed to handle numeric computation and scientific computing and it did it well. Fortran eventually became the inspiration for many other languages such as BASIC. Then, in the 1970s, S was developed in Bell Laboratories primarily by a man called John Chambers. As an aside, John is currently a member of the R Project team and has had an active role in the development of R. S was “designed to offer an alternative and more interactive approach [to Fortran]”. Essentially, when it was designed most of its function were wrappers to Fortran routines, but as development went on, many of these internals were rewritten in C. And then we arrive at R. Developed in 1995 by Ross Ihaka and Robert Gentleman at the university of Auckland. At it’s inception, the creators thought of R as an alternative implementation of S, and much of the code was interchangeable. As development has continued there have been some notable departures but R is still S at heart. The name was actually both a play on the single letter languages (S, C, etc.) and also a play on the creators’ first names. Nowadays, R calls C, Fortran and R for its internals but most of the stuff that you actually write will be in R to start with.</p>
+</div>
+<div id="what-is-r" class="section level1">
+<h1>What is R?</h1>
+<p>Now the history lesson is over, let’s have a look at actually what R is.</p>
+<p>So firstly, R is defined as a statistical programming language. This is compared to something like Python which is usually defined as a general purpose programming language. Essentially, this means that R was built from the ground up to deal with statistical computing rather than coopting it later in its life.</p>
+<p>As I speak now, R is the 9th most popular programming language according to the TIOBE index. Now I have checked over the rankings and they do seem slightly questionable, but R is certainly the most popular statistical programming language.</p>
+<p>Thirdly, R is free and open-source. This is contrary to many other statistical software package like SPSS and SAS, which likely contributed to its relative popularity over its competitors. Not only is the R source code open source, but all the packages (or libraries as they are called in some other languages) are also open source, so R is a completely open platform.</p>
+<p>Getting a bit more technical, R is at its core a functional programming language. That means that everything is done through functions, with a function just being a simple input-computation-output chain. So think of the functions you use in something like Excel, and the functions in R are similar. This approach is different to object oriented languages like Python and Java for example.</p>
+<p>Having said that, R does have different object-oriented systems that allow you to create classes and objects, but we’ll take a look in a little bit about how they compare to other languages. There are actually 2 different OO systems in base R called S3 and S4, and there are more that can be added via packages but they allow for very similar functionality to a typical OO language.</p>
+<p>R is an interpreted language, which means that you’ll need to have R installed on the computer that you want to run your code on. However, there is a rapily growing body of packages that allow you to create and host R-based web apps. This way, people can access your software and apps via a browser without ever having to install R.</p>
+<p>And finally, as I’ve alluded to, R has a large repository of extra packages that are available. These packages perform all sorts of functions, from adding extra OO systems to performing particular statistical calculations to producing graphics and all sorts. For example, I have a package that helps user access the BMRS API, which is a UK API that holds lots of energy-related data. Most of these packages will be written in R, but you can also write packages in Java, C, C++ and Fortran to improve efficiency if you’re working on large objects or performing complex tasks. And all of these packages are provided by a network called CRAN. So to get your package on CRAN you have to submit it and have it go through some checks to make sure everything is working and then its available to everyone, completely open-source.</p>
+</div>
+<div id="r-vs.-other-languages" class="section level1">
+<h1>R vs. other languages</h1>
+<p>So now we know a little bit about R, how does it shape up to other languages?</p>
+<p>Well the primary difference to many other popular languages is that R is a functional language rather than an object-oriented language. Now, if you don’t know what either of those mean, then don’t worry at all. If R is your first language, then the dileation really isn’t very important at all, and you’ll have no issue learning R. If you’re coming over from an OO language however, there are some subtle differences that I’ll show you quickly.</p>
+<p>So here’s a bit of pseudo code that you might see in a typical OO language. we create a person object, and then we dispatch the print method to print out the object. In this case, the method is tied to the object.</p>
+<p>In this R code, however, the approach is ever so slightly different. Again, we create a person object, but this time we print it by passing that object to the print function. The print function will then find the appropriate print method for the type of object we’ve provided an then print it. In a functional language, the methods aren’t a part of the object.</p>
+<p>This is just an example of the kind of differences between the two types of languages but you can see that practically speaking, the difference isn’t really that big.</p>
+<p>Okay, so what else is different between R and some other languages? Well as I alluded to before, R is designed primarily for data analysis and so you’re not really going to be doing any software development in R. As I mentioned before, there are packages and frameworks to create things like web apps, but these will likely be purely data driven applications that will purpose designed. So for instance, in a previous employment role, I created a web app to generate one of the company’s larger reports. That’s about as far as you’re going to go re software development really.</p>
+<p>Something that’s maybe not too different from other languages nowadays is the focus on human-readable syntax. I know for example that Python is very much based on writing human readable code but I’ll let you decide whether that goal has been acheived. But R is based in a similar approach - it should be obvious what’s going on in your code even if the person doesn’t understand R. And when we have a little look at some R code later on you can decide if that’s true or not.</p>
+</div>
+<div id="using-r" class="section level1">
+<h1>Using R</h1>
+<p>Now we’ve gone over the background of R, what should you use R for and what’s it like to use?</p>
+<p>Well, R is best designed for any of the following. So if you’ve got a project to do anything related to those points and you’ve chosen to use R, then you’re on the right path.</p>
+<p>Once you’ve made the correct decision to use R, how do you actually use it? Well, once you’ve downloaded it, there are a few development environments you can use. R does come with a GUI but its rubbish so I wouldn’t recommend using that. Instead, I personally use RStudio which is completely free and open source, but there are other well supported alternative like Visual Studio code.</p>
+</div>
+<div id="what-does-r-code-look-like" class="section level1">
+<h1>What does R code look like?</h1>
+<p>And now for the imporant bit, what does R code actually look like? This…</p>
+<p>So you can see that simple mathematics is quite self-explanatory. You type your computation into the console and the two #s show you the result. Below you can see how we assign variables in R. So we use the <code>&lt;-</code> operator mostly but the <code>=</code> is also valid but avoided. So all we’re doing is assigning two character variables and then printing them out at the bottom. You don’t need to define your variable type when you assign your variables, and variable types can be changed on the fly.</p>
+<p>But let’s look at a proper example of actually doing something in R…</p>
+</div>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>So I’ve got some real-world data from CodeCamp that contains all of the tutorials hosted on their platform between October 2015 and October 2016 that looks a bit like this…</p>
+<p>So we’re going to use the <code>{Tidyverse}</code> packages which are a set of packages developed by RStudio to help with fast data analysis to get some insight into the data. So what’re going to do is load the data, do a bit of cleaning, summarise it and then plot it.</p>
+</div>
+<div id="loading-the-data" class="section level1">
+<h1>Loading the data</h1>
+<p>So first step, getting it into R. I’ve currently got the file saved as a csv file, so I just use the <code>read.csv()</code> function to load it into R. Then I print out the first 3 lines just to make sure it’s what I expect. But before I go any further, I’ve already spotted an error. The <code>Date</code> column is stored as a character string, not a date.</p>
+</div>
+<div id="cleaning-the-data" class="section level1">
+<h1>Cleaning the data</h1>
+<p>So let’s do some cleaning. We’re going to take our dataset, and recode our <code>Date</code> column to actually be a date, and we’re going to add an extra column that’s contains roughly what the topic of the tutorial is. So here I’ve just split it up into web software and OSs. Then I’m going to print out 2 lines again just to make sure everything is right.</p>
+</div>
+<div id="summarising-the-data" class="section level1">
+<h1>Summarising the data</h1>
+<p>Now our data is clean, I want to summarise it before I plot it. So what I’m going to do is group the data by the Date and by the topic, and then I’m going to take an average of the read ratio. The read ratio just being the number of people that actually went all the way through the tutorial once they clicked on it. Again, then I’m just going to print out a few lines of the data to make sure everything looks okay.</p>
+</div>
+<div id="plotting-the-data" class="section level1">
+<h1>Plotting the data</h1>
+<p>And now I’ve got my dataset, I’m going to plot it using the <code>{ggplot2}</code> package. So here I’m just putting the Date on the X axis, the average read ratio on the Y, and I’m saying that I want a different colour for each of my topics. I then say that I want to put lines on the graph (as opposed to say, points), an then I just clean up the scales and add a theme. And voila; we’ve done some simple data presentation in less than 10 minutes.</p>
+<p>Now this is quite a small example, but hopefully it demonstrates what you can do with R very quickly and without much effort.</p>
+</div>
+<div id="plug" class="section level1">
+<h1>Plug</h1>
+<p>Now does anyone know what this is meant to be?</p>
+<p>That’s right, it’s a plug. And why is it there you may ask. Well, it’s because it’s time for me to plug my book and the Intro to R course that I’ll be running here at the Digital Greenhouse.</p>
+</div>
+<div id="teacher" class="section level1">
+<h1>teacheR</h1>
+<p>So starting with the book, it’s called teacheR and it’s aimed at those who are brand new to R and programming, but also those who are comfortable with R but want to secure their conceptual knowledge before the take the step of beginning to teach others. It’s split into two different sections, a For Students that covers the basics with no assumed prior knowledge and then a For Teachers that covers similar and more advanced topics with a bit more complexity. It’s completely free, and hosted on my website at teacher.arawles.co.uk where you’ll also find a PDF and ebook version. I am having a few paperback copies printed when everything’s been checked so if you’re interested in having a paperback version then just let me know. There will be a small charge for the paperbacks but it’ll just be to cover the printing costs. Hopefully, this will be the first book to then be followe by another called opeRate which will focus on applying your R knowledge to practical data analysis problems. Currently, there’s only a chapter or two of the operate book completed but hopefully I’ll be moving onto it soon.</p>
+</div>
+<div id="introduction-to-r" class="section level1">
+<h1>Introduction to R</h1>
+<p>Moving onto the course, I’ll be running a month-long introduction course during November here at the Digital Greenhouse. It’ll be every Thursday between 6 and 7 (probably). It’s absolutely free but there will be limited spaces so do sign up if you’re keen but if you aren’t able to make every week, maybe consider giving over your slot to someone else.</p>
+</div>
+<div id="thanks" class="section level1">
+<h1>Thanks</h1>
+<p>That’s everything from me, I hope you enjoyed. We’ve now got a bit of time for any questions.</p>
 </div>
 
 
