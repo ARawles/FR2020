@@ -100,7 +100,7 @@ Me:
 
 --
 
-- R is written in C, Fortran and R
+- Relies internally on C, Fortran and R
 
 ---
 

@@ -4,9 +4,11 @@
     <title>What I Wish I Knew Before I Started Learning R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Adam Rawles" />
-    <meta name="date" content="2020-09-12" />
+    <meta name="date" content="2020-09-13" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -15,7 +17,7 @@ class: center, middle, inverse, title-slide
 # What I Wish I Knew Before I Started Learning R
 ### Adam Rawles
 ### arawles.co.uk
-### 2020-09-12
+### 2020-09-13
 
 ---
 
@@ -29,8 +31,8 @@ class: center, middle, inverse, title-slide
 --
 
 - 2nd year research assistancy
-    - An investigation into the efficacy of publication bias correction methods
-    
+- An investigation into the efficacy of publication bias correction methods
+
 --
 
 Me:
@@ -68,40 +70,44 @@ Me:
 
 --
 
-   - Developed by IBM in the 1950s
-   
+- Developed by IBM in the 1950s
+
 --
 
-   - Suited to numeric computation and scientific computing
-   - Became the basis for many other programming languages like BASIC
-   
+- Suited to numeric computation and scientific computing
+- Became the basis for many other programming languages like BASIC
+
 --
 
 - S (1976)
 
 --
 
-   - John Chambers
-   
+- John Chambers
+
 --
 
-   - "...designed to offer an alternative and more interactive approach [to Fortran]"
-   
+- "...designed to offer an alternative and more interactive approach [to Fortran]"
+
 --
 
-   - Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
-   
+- Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
+
 --
 
 - R (1995)
 
 --
 
-   - Ross Ihaka &amp; Robert Gentleman
-   
+- Ross Ihaka &amp; Robert Gentleman
+
 --
 
-   - "R can be considered as a different implementation of S"
+- "R can be considered as a different implementation of S"
+
+--
+
+- Relies internally on C, Fortran and R
 
 ---
 
@@ -126,24 +132,24 @@ Me:
 
 --
 
-   - Object-oriented systems
-   
+- Object-oriented systems
+
 --
 
 - Interpreted language
 
 --
 
-  - R needs to be installed to R code
-  - But there's growing support for web apps...
-  
+- R needs to be installed to R code
+- But there's growing support for web apps...
+
 --
 
 - Supported with over 15,000 open-source packages (written primarily in R, but also Java, C, C++, and Fortran)
 
 --
 
-   - Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
+- Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
 
 
 ---
@@ -171,20 +177,25 @@ Me:
 
 --
 
-   - Reporting
-   - Data analysis
-   - Statistics and machine learning
-   - Data driven web apps
-   - Presentations
+- Reporting
+- Data analysis
+- Statistics and machine learning
+- Data driven web apps
+- Presentations
+
+--
 
 - How do you code in R?
 
 --
 
-   - RStudio
-   - Visual Studio Code
-   
-- What does R code look like?
+- R GUI
+- RStudio
+- Visual Studio Code
+
+---
+
+#  What does R code look like?
 
 --
 
@@ -207,13 +218,211 @@ cat(v1, v2)
 ```
 ## hello world
 ```
----
 
-![plug](resources/plug.svg)
-
+- But let's look at a proper example...
 
 ---
 
+# Example
+
+- [CodeCamp](https://www.freecodecamp.org/) dataset containing tutorials and some stats
+
+--
+
+.center[
+&lt;img src="resources/data_preview.png" width="80%" /&gt;
+]
+
+--
+
+- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data
+
+
+---
+
+# Loading the data
+
+
+--
+
+
+```r
+cc_data &lt;- readr::read_csv("code_camp_data.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   Date = col_character(),
+##   Title = col_character(),
+##   Recommends = col_double(),
+##   `Read ratio` = col_double()
+## )
+```
+
+```r
+print(cc_data,n = 3, with = 75)
+```
+
+```
+## # A tibble: 453 x 4
+##   Date       Title                                                                                                                         Recommends `Read ratio`
+##   &lt;chr&gt;      &lt;chr&gt;                                                                                                                              &lt;dbl&gt;        &lt;dbl&gt;
+## 1 01/10/2016 Upgrading to MacOS Sierra will break your SSH keys and lock you out of your own servers. In Free Code CampView storyReferrers         58         0.48
+## 2 01/10/2016 How Crowd Curation Improved Our Search Quality by 27% In Free Code CampView storyReferrers                                            28         0.37
+## 3 01/10/2016 Code Briefing: What I learned from reviewing 50 portfolios on Reddit in 3 crazy days In Free Code CampView storyReferrers             56         0.59
+## # ... with 450 more rows
+```
+
+---
+
+# Cleaning the data
+
+--
+
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(stringr)
+cc_data &lt;- cc_data %&gt;%
+   mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
+          topic = case_when(
+             str_detect(Title,
+                        pattern = "Javascript|CSS|jQuery|React|Node.js|HTML"
+             ) ~ "Web software",
+             str_detect(Title,
+                        pattern = "Mac|Windows|Linux") ~"Operating systems",
+             TRUE ~ "Other"
+          ))
+print(cc_data, n = 2, width = 75)
+```
+
+```
+## # A tibble: 453 x 5
+##   Date       Title                        Recommends `Read ratio` topic    
+##   &lt;date&gt;     &lt;chr&gt;                             &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    
+## 1 2016-10-01 Upgrading to MacOS Sierra w~         58         0.48 Operatin~
+## 2 2016-10-01 How Crowd Curation Improved~         28         0.37 Other    
+## # ... with 451 more rows
+```
+
+
+---
+
+# Summarising the data 
+
+--
+
+
+```r
+summarised_cc_data &lt;- cc_data %&gt;%
+   dplyr::group_by(Date, topic) %&gt;%
+   dplyr::summarise(average_read_ratio = mean(`Read ratio`)) %&gt;%
+   dplyr::ungroup()
+
+print(summarised_cc_data, n = 10)
+```
+
+```
+## # A tibble: 31 x 3
+##    Date       topic             average_read_ratio
+##    &lt;date&gt;     &lt;chr&gt;                          &lt;dbl&gt;
+##  1 2015-10-01 Operating systems              0.79 
+##  2 2015-10-01 Other                          0.613
+##  3 2015-11-01 Other                          0.505
+##  4 2015-11-01 Web software                   0.27 
+##  5 2015-12-01 Other                          0.532
+##  6 2016-01-01 Other                          0.493
+##  7 2016-01-01 Web software                   0.41 
+##  8 2016-02-01 Operating systems              0.66 
+##  9 2016-02-01 Other                          0.454
+## 10 2016-02-01 Web software                   0.313
+## # ... with 21 more rows
+```
+
+---
+
+# Plotting the data
+
+--
+
+
+```r
+library(ggplot2)
+ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic)) +
+   geom_line(size = 1.25) +
+   scale_x_date(name = "Date", date_labels = "%b %y") +
+   scale_y_continuous(name = "Average Read Ratio") +
+   scale_color_discrete(name = "Topic") +
+   theme_classic()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="4" height="3" /&gt;
+---
+.center[
+&lt;img src="resources/plug.svg" width="80%" /&gt;
+]
+---
+
+# teacheR
+
+- My first R book
+
+--
+
+- Hosted for free at [teacher.arawles.co.uk](https://teacher.arawles.co.uk), including a PDF and Ebook version.
+
+--
+
+- Paperback copies to come soon (but very limited)
+
+--
+
+- Aimed at those who are new to data analysis or who are looking to start teaching others
+
+--
+
+- Two sections: For Teachers, For Students
+
+--
+
+- Hopefully to be followed by another book ([opeRate](https://operate.arawles.co.uk))
+
+---
+
+# Introduction to R
+
+--
+
+- Month long introduction course
+
+--
+
+- Every Thursday in November here the Digital Greenhouse
+
+--
+
+- Absolutely free, but limited spaces!
 
 
 ---
