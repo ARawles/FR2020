@@ -130,10 +130,10 @@ Me:
 --
 
 - Interpreted language
-
+   - R needs to be installed to R code
+   
 --
 
-   - R needs to be installed to R code
    - But there's growing support for web apps...
 
 --
