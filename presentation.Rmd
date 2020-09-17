@@ -129,7 +129,7 @@ Me:
 --
 
 - Interpreted language
-   - R needs to be installed to R code
+   - R needs to be installed to run R code
    
 --
 
@@ -154,7 +154,7 @@ Me:
 
 --
 
-Object oriented:
+> Object oriented:
 
 ```{r, eval = FALSE}
 new_person = person("Adam", "Rawles")
@@ -167,7 +167,7 @@ print(c("Adam", "Rawles"))
 
 --
 
-Functional:
+> Functional:
 
 ```{r, eval = FALSE}
 new_person <- person("Adam", "Rawles")
@@ -251,7 +251,14 @@ knitr::include_graphics("resources/data_preview.png")
 
 --
 
-- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data
+- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data   
+
+--
+
+   - Load
+   - Clean
+   - Summarise
+   - Plot
 
 
 ---
@@ -263,7 +270,7 @@ knitr::include_graphics("resources/data_preview.png")
 
 ```{r}
 cc_data <- readr::read_csv("code_camp_data.csv")
-print(cc_data,n = 3, with = 75)
+print(cc_data,n = 3, width = 75)
 ```
 
 ---
@@ -335,7 +342,7 @@ knitr::include_graphics("resources/plug.svg")
 
 --
 
-- Two sections: For Teachers, For Students
+- Two sections: For Students, For Teachers
 
 --
 
@@ -351,7 +358,7 @@ knitr::include_graphics("resources/plug.svg")
 
 ---
 
-# Introduction to R
+# Introduction to R Course
 
 --
 

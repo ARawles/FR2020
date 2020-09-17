@@ -4,7 +4,7 @@
     <title>What I Wish I Knew Before I Started Learning R</title>
     <meta charset="utf-8" />
     <meta name="author" content="Adam Rawles" />
-    <meta name="date" content="2020-09-12" />
+    <meta name="date" content="2020-09-17" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
@@ -16,8 +16,7 @@ class: center, middle, inverse, title-slide
 
 # What I Wish I Knew Before I Started Learning R
 ### Adam Rawles
-### arawles.co.uk
-### 2020-09-12
+### 2020-09-17
 
 ---
 
@@ -31,7 +30,7 @@ class: center, middle, inverse, title-slide
 --
 
 - 2nd year research assistancy
-- An investigation into the efficacy of publication bias correction methods
+   - An investigation into the efficacy of publication bias correction methods
 
 --
 
@@ -70,12 +69,12 @@ Me:
 
 --
 
-- Developed by IBM in the 1950s
+   - Developed by IBM in the 1950s
 
 --
 
-- Suited to numeric computation and scientific computing
-- Became the basis for many other programming languages like BASIC
+   - Suited to numeric computation and scientific computing
+   - Became the basis for many other programming languages like BASIC
 
 --
 
@@ -83,15 +82,15 @@ Me:
 
 --
 
-- John Chambers
+   - John Chambers
 
 --
 
-- "...designed to offer an alternative and more interactive approach [to Fortran]"
+   - "...designed to offer an alternative and more interactive approach [to Fortran]"
 
 --
 
-- Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
+   - Originally called Fortran to do most of the computing, but many of the internal functions were rewritten using C in 1988
 
 --
 
@@ -99,15 +98,15 @@ Me:
 
 --
 
-- Ross Ihaka &amp; Robert Gentleman
+   - Ross Ihaka &amp; Robert Gentleman
 
 --
 
-- "R can be considered as a different implementation of S"
+   - "R can be considered as a different implementation of S"
 
 --
 
-- R is written in C, Fortran and R
+   - Relies internally on C, Fortran and R
 
 ---
 
@@ -120,11 +119,11 @@ Me:
 
 --
 
-- Open-source
+- 9th most popular programming language ([TIOBE index](https://en.wikipedia.org/wiki/TIOBE_index]))
 
 --
 
-- 9th most popular programming language ([TIOBE index](https://en.wikipedia.org/wiki/TIOBE_index]))
+- Open-source
 
 --
 
@@ -132,16 +131,16 @@ Me:
 
 --
 
-- Object-oriented systems
+   - Object-oriented systems
 
 --
 
 - Interpreted language
-
+   - R needs to be installed to run R code
+   
 --
 
-- R needs to be installed to R code
-- But there's growing support for web apps...
+   - But there's growing support for web apps...
 
 --
 
@@ -149,14 +148,46 @@ Me:
 
 --
 
-- Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
+   - Provided through the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/))
 
 
 ---
 
 # R vs. other languages
 
+--
+
 - Functional vs. Object-oriented
+
+--
+
+&gt; Object oriented:
+
+
+```r
+new_person = person("Adam", "Rawles")
+new_person.print()
+```
+
+
+```
+## [1] "Adam"   "Rawles"
+```
+
+--
+
+&gt; Functional:
+
+
+```r
+new_person &lt;- person("Adam", "Rawles")
+print(new_person)
+```
+
+
+```
+## [1] "Adam"   "Rawles"
+```
 
 --
 
@@ -177,11 +208,11 @@ Me:
 
 --
 
-- Reporting
-- Data analysis
-- Statistics and machine learning
-- Data driven web apps
-- Presentations
+   - Reporting
+   - Data analysis
+   - Statistics and machine learning
+   - Data driven web apps
+   - Presentations
 
 --
 
@@ -189,9 +220,9 @@ Me:
 
 --
 
-- R GUI
-- RStudio
-- Visual Studio Code
+   - R GUI
+   - RStudio
+   - Visual Studio Code
 
 ---
 
@@ -219,6 +250,8 @@ cat(v1, v2)
 ## hello world
 ```
 
+--
+
 - But let's look at a proper example...
 
 ---
@@ -235,7 +268,14 @@ cat(v1, v2)
 
 --
 
-- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data
+- We're going to use the [Tidyverse](www.tidyverse.org) packages to load and analyse the data   
+
+--
+
+   - Load
+   - Clean
+   - Summarise
+   - Plot
 
 
 ---
@@ -261,16 +301,16 @@ cc_data &lt;- readr::read_csv("code_camp_data.csv")
 ```
 
 ```r
-print(cc_data,n = 3, with = 75)
+print(cc_data,n = 3, width = 75)
 ```
 
 ```
 ## # A tibble: 453 x 4
-##   Date       Title                                                                                                                         Recommends `Read ratio`
-##   &lt;chr&gt;      &lt;chr&gt;                                                                                                                              &lt;dbl&gt;        &lt;dbl&gt;
-## 1 01/10/2016 Upgrading to MacOS Sierra will break your SSH keys and lock you out of your own servers. In Free Code CampView storyReferrers         58         0.48
-## 2 01/10/2016 How Crowd Curation Improved Our Search Quality by 27% In Free Code CampView storyReferrers                                            28         0.37
-## 3 01/10/2016 Code Briefing: What I learned from reviewing 50 portfolios on Reddit in 3 crazy days In Free Code CampView storyReferrers             56         0.59
+##   Date     Title                                    Recommends `Read ratio`
+##   &lt;chr&gt;    &lt;chr&gt;                                         &lt;dbl&gt;        &lt;dbl&gt;
+## 1 01/10/2~ Upgrading to MacOS Sierra will break yo~         58         0.48
+## 2 01/10/2~ How Crowd Curation Improved Our Search ~         28         0.37
+## 3 01/10/2~ Code Briefing: What I learned from revi~         56         0.59
 ## # ... with 450 more rows
 ```
 
@@ -282,7 +322,7 @@ print(cc_data,n = 3, with = 75)
 
 
 ```r
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 library(stringr)
 cc_data &lt;- cc_data %&gt;%
    mutate(Date = as.Date(Date, format = "%d/%m/%Y"),
@@ -346,7 +386,6 @@ print(summarised_cc_data, n = 10)
 
 --
 
-
 ```r
 library(ggplot2)
 ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic)) +
@@ -357,7 +396,8 @@ ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic))
    theme_classic()
 ```
 
-&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="4" height="3" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-11-1.png" style = 'margin-left:auto;margin-right:auto;display:block;' /&gt;
+
 ---
 .center[
 &lt;img src="resources/plug.svg" width="80%" /&gt;
@@ -366,7 +406,11 @@ ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic))
 
 # teacheR
 
-- My first R book
+- Aimed at those who are new to data analysis or who are looking to start teaching others
+
+--
+
+- Two sections: For Students, For Teachers
 
 --
 
@@ -378,27 +422,19 @@ ggplot(summarised_cc_data, aes(x = Date, y = average_read_ratio, color = topic))
 
 --
 
-- Aimed at those who are new to data analysis or who are looking to start teaching others
-
---
-
-- Two sections: For Teachers, For Students
-
---
-
 - Hopefully to be followed by another book ([opeRate](https://operate.arawles.co.uk))
 
 ---
 
-# Introduction to R
+# Introduction to R Course
 
 --
 
-- Month long introduction course
+- Month-long introduction course
 
 --
 
-- Every Thursday in November here the Digital Greenhouse
+- Every Thursday in November here the Digital Greenhouse (6-7pm)
 
 --
 
