@@ -1,5 +1,5 @@
 library(rmarkdown)
 library(xaringan)
 rmarkdown::render("presentation.Rmd", output_file = "index.html")
-rmarkdown::render("presentation.Rmd", output_file = "backup.html", self_contained = TRUE)
+#rmarkdown::render("presentation.Rmd", output_file = "backup.html", self_contained = TRUE)
 rmarkdown::render("script.Rmd", output_file = "script.html")
